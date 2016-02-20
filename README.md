@@ -41,9 +41,9 @@ java Minesweeper
 
 ## Contributors
 ***
-+ 1G151028 Shinnosuke Kishida [leader]
-+ 1G151026 Tomoki Kano [sub-leader]
-+ 1G151009 Ryouta Hatayama
-+ 1G151015 Satoka Hiraoka
-+ 1G151038 Hiroaki Miyake
-+ 1G151054 Takumi Okubo
++ Shinnosuke Kishida [leader]
++ Tomoki Kano [sub-leader]
++ Ryouta Hatayama
++ Satoka Hiraoka
++ Hiroaki Miyake
++ Takumi Okubo
