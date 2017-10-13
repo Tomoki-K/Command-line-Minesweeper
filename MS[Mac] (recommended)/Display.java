@@ -126,22 +126,14 @@ public class Display {
     // change display color
     private static String color(Block t) {
         switch (Minesweeper.countMines(t)) {
-            case 1:
-                return "\u001B[00;34m 1\u001b[00m"; // blue
-            case 2:
-                return "\u001B[00;36m 2\u001b[00m"; // light blue
-            case 3:
-                return "\u001B[00;32m 3\u001b[00m"; // green
-            case 4:
-                return "\u001B[00;35m 4\u001b[00m"; // purple
-            case 5:
-                return "\u001B[00;35m 5\u001b[00m"; // purple
-            case 6:
-                return "\u001B[00;35m 6\u001b[00m"; // purple
-            case 7:
-                return "\u001B[00;35m 7\u001b[00m"; // purple
-            case 8:
-                return "\u001B[00;35m 8\u001b[00m"; // purple
+            case 1: return "\u001B[00;34m 1\u001b[00m"; // blue
+            case 2: return "\u001B[00;36m 2\u001b[00m"; // light blue
+            case 3: return "\u001B[00;32m 3\u001b[00m"; // green
+            case 4: return "\u001B[00;35m 4\u001b[00m"; // purple
+            case 5: return "\u001B[00;35m 5\u001b[00m"; // purple
+            case 6: return "\u001B[00;35m 6\u001b[00m"; // purple
+            case 7: return "\u001B[00;35m 7\u001b[00m"; // purple
+            case 8: return "\u001B[00;35m 8\u001b[00m"; // purple
         }
         return null;
     }

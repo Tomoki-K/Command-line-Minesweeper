@@ -4,7 +4,6 @@ import java.io.InputStreamReader;
 import java.util.Objects;
 
 interface Openable {
-
     static int countNeighbours(Block t) {
         int x = t.coorX;
         int y = t.coorY;
@@ -48,7 +47,6 @@ class Block {
 /*==================== Cell class ====================*/
 
 class Cell extends Block implements Openable {
-
     // constructor
     public Cell(int x, int y) {
         this.coorX = x;
@@ -56,13 +54,11 @@ class Cell extends Block implements Openable {
         this.state = 0;
         this.hasMine = 0;
     }
-
 }
 
 /*==================== Wall class ====================*/
 
 class Wall extends Block {
-
     // constructor
     public Wall(int x, int y) {
         this.coorX = x;
@@ -75,11 +71,9 @@ class Wall extends Block {
 /*==================== Minesweeper class ====================*/
 
 public class Minesweeper {
-
     private static int side; // cells per side
     private static String playerName; // player's name
     private static int mineTotal; // Total count of mines
-
     public static Block[][] field; // create field array
 
     /*-------------------- main method --------------------*/
@@ -93,7 +87,6 @@ public class Minesweeper {
             mineTotal = Integer.parseInt(args[1]);  //  set mine count from command line
         } catch (Exception e) {
             mineTotal = (int) (side * side * 0.13); // set default mine count to 13%
-
         }
 
         // read player's name
@@ -138,29 +131,21 @@ public class Minesweeper {
     private static void nameReader() {
         System.out.print("> ");
         BufferedReader nameReader = new BufferedReader(new InputStreamReader(System.in));
-        String playerName;
         try {
-            playerName = nameReader.readLine();
-            setPlayerName(playerName);
+            setPlayerName(nameReader.readLine());
         } catch (IOException e) {
             System.out.println("Invalid name. Try again.");
             nameReader();
         }
-
     }
 
     // set up new game field
     private static void newGame() {
-
         // make array and initialize with Cell/Wall instances
         field = new Block[side + 2][side + 2];
         for (int j = 0; j < side + 2; j++) {
             for (int i = 0; i < side + 2; i++) {
-                if (j == 0 || j == side + 2 || i == 0 || i == side + 2) {
-                    field[i][j] = new Wall(i, j); // create Wall instance
-                } else {
-                    field[i][j] = new Cell(i, j); // create Cell instance
-                }
+                field[i][j] = (j == 0 || j == side + 2 || i == 0 || i == side + 2) ? new Wall(i, j) : new Cell(i, j);
             }
         }
 
@@ -191,7 +176,6 @@ public class Minesweeper {
     // convert command input to actual command
     public static void cmdToAction() throws IOException {
         System.out.print("> ");
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String str = null;
         try {
@@ -212,8 +196,6 @@ public class Minesweeper {
             String cmd = input[0];
             int x = Integer.parseInt(input[1]);
             int y = Integer.parseInt(input[2]);
-
-
             switch (cmd) {
                 case "open":
                 case "o":
@@ -265,7 +247,6 @@ public class Minesweeper {
         return side;
     }
 
-
     // name getter
     public static String getName() {
         return playerName;
@@ -298,7 +279,6 @@ public class Minesweeper {
     public static boolean isCell(Block t) {
         return t.coorX != 0 && t.coorX != side + 1 && t.coorY != 0 && t.coorY != side + 1;
     }
-
 
     // check if String is Number
     public static boolean isNumeric(String s) {

@@ -11,32 +11,33 @@ import java.util.Scanner;;
 class Rank {
     String name;
     double time;
+
+    public Rank(String name, double time){
+        this.name = name;
+        this.time = time;
+    }
+
 }
 
 /*==================== Ranking class ====================*/
 
 public class Ranking extends Rank {
+    public Ranking(String name, double time){
+        super(name, time);
+    }
     static Rank[] ranks = new Rank[10];
-
     // show ranking
     public static void rank() {
         try {
             // read file
             Scanner scan = new Scanner(new FileReader("Ranking.txt"));
-
             // read line -> add each line to Array
-            int i = 0;
-            while (i < ranks.length) {
-                ranks[i] = new Rank();
-                ranks[i].name = scan.next(); // name
-                ranks[i].time = toDouble(scan.next());// time
-                i++;
+            for (int i = 0 ; i < ranks.length; i++) {
+                ranks[i] = new Rank(scan.next(), toDouble(scan.next()));
             }
-
             // add new data if time is shorter than last data
             if (ranks[9].time >= getTime() || ranks[9].time == 0.0) {
-                ranks[9].name = getName();
-                ranks[9].time = getTime();
+                ranks[9] = new Rank(getName(), getTime());
             }
 
             // sort by time
@@ -49,9 +50,7 @@ public class Ranking extends Rank {
 
             // overwrite ranking file
             BufferedWriter writer = new BufferedWriter(new FileWriter("Ranking.txt"));
-
             String[] Cnt = {"1st : ", "2nd : ", "3rd : ", "4th : ", "5th : ", "6th : ", "7th : ", "8th : ", "9th : ", "10th : "};
-
             for (int j = 0; j < ranks.length; j++) {
                 if (Objects.equals(ranks[j].name, "(noData)") && ranks[j].time == 3600.0) {
                     System.out.println(j + 1 + "th : -no data-");
@@ -66,9 +65,7 @@ public class Ranking extends Rank {
                 writer.write(ranks[j].name + " " + ranks[j].time);
                 writer.newLine();
             }
-
             writer.close();
-
         } catch (FileNotFoundException e) {
             System.out.println("Error : Could not find file.");
         } catch (IOException e) {
